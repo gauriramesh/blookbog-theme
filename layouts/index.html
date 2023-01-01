@@ -1,6 +1,11 @@
 {{ define "main" }}
   <main id="main">
     <h1>{{ .Title }}</h1>
-    {{ .Content }}
+    {{ range ( where .Site.RegularPages "Type" "posts" | first 3 ) }}
+    <div>
+      <h3><li><a href="{{ .Permalink }}">{{ .Title }}</a></li></h3>
+      {{ .Summary }}
+    </div>
+    {{end}}
   </main>
 {{ end }}
